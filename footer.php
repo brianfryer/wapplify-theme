@@ -1,6 +1,5 @@
     <div class="footer-container">
         <footer class="wrapper">
-            <hr />
             <section>
                 <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("footer") ) : endif; ?>
             </section>
@@ -13,7 +12,7 @@
                 'menu_id'        => FALSE,
             ));
             ?>
-        </footer>
+        </footer><!-- .wrapper -->
     </div><!-- .footer-container -->
 
 <!-- BEGIN wp_footer() output -->

@@ -29,17 +29,11 @@
                         <img title="wApplify's Logo" alt="Content syndication by wApplify" src="<?php echo bloginfo('template_url'); ?>/img/content-syndication.png" width="289px" height="83px" />
                     </a>
                 </h1>
-                <h2><?php bloginfo('description'); ?></h2>
+                <h2 id="tagline"><?php bloginfo('description'); ?></h2>
             </hgroup>
-            <?php
-            wp_nav_menu(array(
-                'theme_location' => 'login-menu',
-                'container'      => 'nav',
-                'container_id'   => 'login',
-                'menu_class'     => 'menu',
-                'menu_id'        => FALSE,
-            ));
-            ?>
+            <div class="header-widgets">
+                <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("header-widgets") ) : endif; ?>
+            </div><!-- .header-widgets -->
             <?php
             wp_nav_menu(array(
                 'theme_location' => 'primary-nav',
@@ -49,15 +43,5 @@
                 'menu_id'        => FALSE,
             ));
             ?>
-            <hr />
-            <?php
-            wp_nav_menu(array(
-                'theme_location' => 'social-media',
-                'container'      => 'nav',
-                'container_id'   => 'social-media',
-                'menu_class'     => 'menu',
-                'menu_id'        => FALSE,
-            ));
-            ?>
-        </header>
+        </header><!-- .wrapper -->
     </div><!-- .header-container -->

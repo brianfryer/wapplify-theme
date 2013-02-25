@@ -5,11 +5,16 @@
 
             <?php the_post(); ?>
             <article>
-                <h1><?php the_title(); ?></h1>
-                <?php the_content(); ?>
+                <div class="content">
+                    <h1><?php the_title(); ?></h1>
+                    <?php the_content(); ?>
+                </div><!-- .content -->
+                <aside class="sidebar">
+                    <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("home-likebox") ) : endif; ?>
+                </aside><!-- .sidebar -->
             </article>
 
-        </section>
+        </section><!-- .wrapper -->
     </div><!-- .content-container -->
 
 <?php get_footer(); ?>

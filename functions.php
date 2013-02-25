@@ -14,7 +14,7 @@ if (!function_exists('wapplify_load_styles_scripts')) {
             // Modernizr
             wp_deregister_script('modernizr');
             wp_register_script('modernizr', get_template_directory_uri() . '/js/vendors/modernizr-2.6.2-respond-1.1.0.min.js', null, null );
-            wp_enqueue_script('modernizr');
+            //wp_enqueue_script('modernizr');
             // HTML5Shiv
             wp_deregister_script('html5shiv');
             wp_enqueue_script('html5shiv', get_template_directory_uri() . '/js/vendors/html5shiv.js', false, '3.4');
@@ -51,6 +51,16 @@ add_action( 'init', 'wapplify_register_menus' );
  *  Register widget ready areas  *
  * ============================= */
 
+// Page sidebar
+register_sidebar(array(
+    'id'            => 'page-sidebar',
+    'name'          => 'Sidebar',
+    'before_widget' => '<div class="sidebar-widget">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h3>',
+    'after_title'   => '</h3>'
+));
+
 // Home hero
 register_sidebar(array(
     'id'            => 'home-hero',
@@ -59,6 +69,26 @@ register_sidebar(array(
     'after_widget'  => '</div>',
     'before_title'  => '<h2>',
     'after_title'   => '</h2>'
+));
+
+// Home blurbs
+register_sidebar(array(
+    'id'            => 'home-blurbs',
+    'name'          => 'Homepage Blurbs',
+    'before_widget' => '<div class="blurb-widget">',
+    'after_widget'  => '</div>',
+    'before_title'  => '<h3>',
+    'after_title'   => '</h3>'
+));
+
+// Home Like box
+register_sidebar(array(
+    'id'            => 'home-likebox',
+    'name'          => 'Homepage Likebox',
+    'before_widget' => '',
+    'after_widget'  => '',
+    'before_title'  => '<span style="display:none;">',
+    'after_title'   => '</span>'
 ));
 
 // Footer

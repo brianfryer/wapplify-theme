@@ -23,10 +23,14 @@
 
     <div class="header-container">
         <header class="wrapper">
-            <h1>
-                <strong id="logo"><a href="<?php echo site_url(); ?>"><?php bloginfo('name'); ?></a></strong>
-                <small> <?php bloginfo('description'); ?></small>
-            </h1>
+            <hgroup>
+                <h1 id="logo">
+                    <a href="<?php echo site_url(); ?>">
+                        <img title="wApplify's Logo" alt="Content syndication by wApplify" src="<?php echo bloginfo('template_url'); ?>/img/content-syndication.png" width="289px" height="83px" />
+                    </a>
+                </h1>
+                <h2><?php bloginfo('description'); ?></h2>
+            </hgroup>
             <?php
             wp_nav_menu(array(
                 'theme_location' => 'login-menu',

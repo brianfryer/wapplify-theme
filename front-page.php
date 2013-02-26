@@ -5,22 +5,22 @@
 
             <div class="home-hero">
                 <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("home-hero") ) : endif; ?>
-                <hr />
+                <div class="clearboth"></div>
             </div><!-- .home-hero -->
 
             <div class="home-blurbs">
                 <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("home-blurbs") ) : endif; ?>
-                <hr />
+                <div class="clearboth"></div>
             </div><!-- .home-blurbs -->
 
-            <?php the_post(); ?>
             <article>
                 <div class="content">
-                    <?php the_content(); ?>
+                    <?php the_post(); the_content(); ?>
                 </div><!-- .content -->
-                <aside class="like box">
+                <aside class="like-box">
                     <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("home-likebox") ) : endif; ?>
                 </aside><!-- .like.box -->
+                <div class="clearboth"></div>
             </article>
 
         </section><!-- .wrapper -->

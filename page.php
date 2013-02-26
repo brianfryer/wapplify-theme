@@ -10,7 +10,7 @@
                     <?php the_content(); ?>
                 </div><!-- .content -->
                 <aside class="sidebar">
-                    <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("home-likebox") ) : endif; ?>
+                    <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("page-sidebar") ) : endif; ?>
                 </aside><!-- .sidebar -->
             </article>
 

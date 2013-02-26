@@ -105,8 +105,8 @@ register_sidebar(array(
 register_sidebar(array(
     'id'            => 'footer',
     'name'          => 'Footer',
-    'before_widget' => '',
-    'after_widget'  => '',
+    'before_widget' => '<div class="footer-widget">',
+    'after_widget'  => '</div>',
     'before_title'  => '<h3>',
     'after_title'   => '</h3>'
 ));

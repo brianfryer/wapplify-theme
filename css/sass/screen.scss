@@ -18,9 +18,13 @@ $orange: #DF9630;
 body {
   color: #222;
   font-family: $main-font;
+  background-color: $blue;
 }
 
-h1, h2, h3, h4, h5, h6 {}
+h1, h2, h3, h4, h5, h6 {
+  margin-top: 0;
+  line-height: 1;
+}
 
 a[href] {
   color: $orange;
@@ -34,7 +38,7 @@ hr {
   @extend .clearboth;
   margin: 10px 0;
   border: none;
-  border-top: 1px solid tint($blue, 50%);
+  border-top: 1px dotted tint($blue, 50%);
 }
 
 
@@ -50,28 +54,122 @@ hr {
 
 .screen-reader-text { @extend .destroy; }
 
+.btn, a.btn, button.btn {
+  @include inline-block;
+  margin: 0 5px;
+  padding: 7px 14px;
+  color: #fff;
+  font-size: em(18);
+  font-weight: bold;
+  text-decoration: none;
+  text-shadow: 0 1px 0 rgba(#000, 0.2);
+  text-transform: uppercase;
+  border-radius: 18px;
+  border: none;
+  background-color: rgba(#000, 0.3);
+
+  &:hover {
+    color: #fff;
+    text-shadow: 0 1px 0 rgba(#000, 0.4);
+    background-color: rgba(#000, 0.4)
+  }
+  &.small {
+    @include pad(3px 6px);
+    font-size: em(12);
+    border-radius: 8px;
+  }
+  &.orange {
+    background-color: $orange;
+
+    &:hover {
+      background-color: shade($orange, 10%)
+    }
+  }
+  &.blue {
+    background-color: $blue;
+
+    &:hover {
+      background-color: tint($blue, 10%)
+    }
+  }
+}
+
 .header-widget {
   @include clearfix;
   margin-top: 10px;
 }
+
 .hero-widget {
   @include span-columns(6);
-  //@include omega(2n);
 
-  &:last-of-type {
+  &:nth-child(2) {
     @include omega;
   }
+  p {
+    margin-top: 0;
+  }
 }
+
 .blurb-widget {
-  @include span-columns(3, table);
-  @include pad($gutter);
+  @include span-columns(3);
   text-align: center;
 
+  &:nth-child(4) {
+    @include omega;
+  }
+  p {
+    margin-top: 0;
+  }
   img {
     width: 100%;
   }
+  a {
+    color: #fff;
+    text-decoration: none;
+
+    > span {
+      position: relative;
+      display: block;
+      margin-top: -39px;
+      padding: 8px 0;
+      background-color: rgba($blue, 0.4);
+    }
+    &:hover {
+
+      > span {
+        background-color: rgba($orange, 0.4);
+      }
+    }
+  }
 }
 
+.footer-widget {
+  @include span-columns(2);
+  font-size: 80%;
+
+  &:not(:first-child) {
+    @include shift(0.5);
+  }
+
+  h3 {
+    padding-bottom: em(12);
+    border-bottom: 1px dotted tint($blue, 20%);
+  }
+}
+
+.content {
+  line-height: 1.5;
+}
+
+.page-template {
+
+  .content {
+    @include span-columns(9);
+  }
+  .sidebar {
+    @include span-columns(3);
+  }
+}
 
 /* =========================================================================== *
 *  Structural elements  *
@@ -97,7 +195,6 @@ hr {
     > .header-widgets {
       @include span-columns(4);
       @include omega;
-      margin-top: 10px;
     }
     > nav {
       @include span-columns(12);
@@ -108,25 +205,39 @@ hr {
 
 .content-container {
   margin-top: -23px;
+  border-top: 1px dotted rgba(#000, 0.05);
   //background-image: url('/wp-content/themes/wapplify-theme/img/subtle_dots.png');
   background-color: #eee;
 
   > section {
     margin-top: 43px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 
     > article {
       @include pad(30px);
       border-radius: 6px;
       background-color: #fff;
+      box-shadow: 0 1px 4px 0 rgba(#000, 0.3);
     }
   }
 }
 
-.footer-container {}
+.footer-container {
+  padding: $gutter 0;
+  border-top: 1px solid #bbb;
+  background-color: $blue;
+  box-shadow: inset 0 2px 6px rgba(#000, 0.2);
+}
 
-> footer {
+footer {
 
+  a[href] {
+    color: $orange;
+
+    &:hover {
+      color: tint($blue, 50%);
+    }
+  }
   > section {}
   nav {}
 }
@@ -232,19 +343,6 @@ nav {
       }
     }
   }
-
-  &#bottom {
-
-    > ul {
-
-      > li {
-
-        > a {
-
-        }
-      }
-    }
-  }
 }
 
 
@@ -296,36 +394,66 @@ header #searchform {
   @extend .floatright;
 
   input[type=text] {
-    @include pad(2px 3px 3px);
+    @include pad(3px);
     border-radius: 3px;
     border: 1px solid #ccc;
     background-color: #fff;
   }
   input[type=submit] {
-    color: #666;
-    border-radius: 3px;
-    border: 1px solid #bbb;
-    background-color: #ccc;
+    @extend .btn;
+    @extend .small;
+    position: relative;
+    top: -2px;
+    margin: 0;
   }
 }
 
+#menu-navigation-bottom,
+#menu-social-media-links {
+  @extend %menu;
+}
+
 .home {
+
   article {
-    border-top-right-radius: 0;
-    border-top-left-radius: 0;
+    border-top-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    border-top: 1px solid tint($blue, 50%);
+
+    > .content {
+      @include span-columns(7.5);
+    }
+    > .like-box {
+      @include span-columns(4);
+      @include shift(0.5);
+      @include omega;
+    }
   }
 }
 
 .home-hero,
 .home-blurbs {
+  @include pad($gutter);
   background-color: #fff;
-  hr { margin: 0; }
+  box-shadow: 0 1px 4px 0 rgba(#000, 0.3);
 }
 .home-hero {
+  border-top-right-radius: 6px;
+  border-top-left-radius: 6px;
 
+  h2 {
+    font-weight: normal;
+    line-height: 1.4;
+
+  }
 }
 .home-blurbs {
   @include row(table);
+}
+
+.footer-widgets {
+  color: tint($blue, 90%);
+  line-height: 1.5;
 }
 
 .phone {

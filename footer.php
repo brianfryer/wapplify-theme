@@ -1,17 +1,8 @@
     <div class="footer-container">
         <footer class="wrapper">
-            <section>
+            <section class="footer-widgets">
                 <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("footer") ) : endif; ?>
-            </section>
-            <?php
-            wp_nav_menu(array(
-                'theme_location' => 'bottom-nav',
-                'container'      => 'nav',
-                'container_id'   => 'bottom',
-                'menu_class'     => 'menu',
-                'menu_id'        => FALSE,
-            ));
-            ?>
+            </section><!-- .footer-widgets -->
         </footer><!-- .wrapper -->
     </div><!-- .footer-container -->
 

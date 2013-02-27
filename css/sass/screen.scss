@@ -28,9 +28,11 @@ h1, h2, h3, h4, h5, h6 {
 
 a[href] {
   color: $orange;
+  text-decoration: none;
 
   &:hover {
-    color: tint($blue, 30%);
+    color: blend-vividlight($orange, $orange);
+    text-decoration: underline;
   }
 }
 
@@ -41,6 +43,48 @@ hr {
   border-top: 1px dotted tint($blue, 50%);
 }
 
+blockquote {
+  margin: 0;
+  padding: 10px 0 10px 20px;
+  color: #555;
+  font-style: italic;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-left: 3px solid rgba(#000, 0.15);
+  background-color: rgba(#000, 0.05);
+
+  em { font-style: normal; }
+  > *:first-child {
+    margin-top: 0;
+  }
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+label {
+  color: tint($blue, 40%);
+  font-size: 80%;
+}
+input[type=text] {
+  padding: 6px;
+  font-size: 120%;
+  border-radius: 4px;
+  border: 1px solid tint($blue, 60%);
+
+  &:focus {
+    background-color: tint(yellow, 90%);
+  }
+
+  @include media(max-width 600px) {
+    max-width: 100%;
+  }
+}
+textarea {
+  @extend input[type=text];
+}
+select {}
+
 
 /* =========================================================================== *
  *  Class-level elements  *
@@ -50,9 +94,83 @@ hr {
 .floatright { float: right; }
 .clearboth  { clear: both; }
 
+.alignleft {
+  @extend .floatleft;
+  margin: 0 20px 20px 0;
+}
+.alignright {
+  @extend .floatright;
+  margin: 0 0 20px 20px;
+}
+
 .destroy { display: none; }
 
 .screen-reader-text { @extend .destroy; }
+
+a[href].cboxElement {
+  color: transparent;
+  text-decoration: none;
+  border: none;
+
+  &:hover {
+    @extend .cboxElement;
+  }
+}
+
+.page-title {
+  color: $blue;
+  padding-bottom: 5px;
+  border-bottom: 1px dotted tint($blue, 50%);
+}
+
+.copyright {
+  @extend .clearboth;
+  color: tint($blue, 50%);
+  font-size: 80%;
+
+  a {
+    color: tint($blue, 50%);
+    text-decoration: none;
+  }
+}
+
+#menu-social-media-links {
+
+  > li {
+    @include inline-block;
+    margin-right: 3px;
+  }
+  a {
+    opacity: 0.5;
+    display: block;
+    overflow: hidden;
+    width: 32px;
+    height: 32px;
+    text-indent: -9999px;
+    border-radius: 3px;
+    background-image: url('/wp-content/themes/wapplify-theme/img/sprite.gif');
+    background-repeat: no-repeat;
+
+    &:hover {
+      opacity: 1;
+      box-shadow: 0 1px 2px 0 rgba(#000, 0.3);
+    }
+  }
+}
+.facebook > a {
+  background-position: 0 0;
+
+  &:hover {
+    background-position: 0 -32px;
+  }
+}
+.linkedin > a {
+  background-position: -32px 0;
+
+  &:hover {
+    background-position: -32px -32px;
+  }
+}
 
 .btn, a.btn, button.btn {
   @include inline-block;
@@ -61,7 +179,6 @@ hr {
   color: #fff;
   font-size: em(18);
   font-weight: bold;
-  text-decoration: none;
   text-shadow: 0 1px 0 rgba(#000, 0.2);
   text-transform: uppercase;
   border-radius: 18px;
@@ -70,26 +187,34 @@ hr {
 
   &:hover {
     color: #fff;
-    text-shadow: 0 1px 0 rgba(#000, 0.4);
-    background-color: rgba(#000, 0.4)
+    text-decoration: none;
+    text-shadow: 0 1px 1px rgba(#000, 0.4);
+    background-color: rgba(#000, 0.2)
   }
-  &.small {
+  &.tiny {
     @include pad(3px 6px);
+    margin: 0 2px;
     font-size: em(12);
     border-radius: 8px;
+  }
+  &.small {
+    margin: 0 3px;
+    @include pad(5px 10px);
+    font-size: em(14);
+    border-radius: 14px;
   }
   &.orange {
     background-color: $orange;
 
     &:hover {
-      background-color: shade($orange, 10%)
+      background-color: blend-vividlight($orange, $orange);
     }
   }
   &.blue {
     background-color: $blue;
 
     &:hover {
-      background-color: tint($blue, 10%)
+      background-color: blend-lineardodge($blue, $blue)
     }
   }
 }
@@ -100,10 +225,22 @@ hr {
 }
 
 .hero-widget {
-  @include span-columns(6);
 
+  &:first-child {
+    @include span-columns(5);
+
+    @include media(max-width 800px) {
+      @include span-columns(12);
+    }
+  }
   &:nth-child(2) {
+    @include span-columns(7);
     @include omega;
+
+    @include media(max-width 800px) {
+      @include span-columns(12);
+      margin-top: 20px;
+    }
   }
   p {
     margin-top: 0;
@@ -114,7 +251,15 @@ hr {
   @include span-columns(3);
   text-align: center;
 
-  &:nth-child(4) {
+  @include media(max-width 900px) {
+    @include span-columns(6);
+
+    &:nth-child(2n) {
+      @include omega;
+    }
+  }
+
+  &:nth-child(4n) {
     @include omega;
   }
   p {
@@ -125,7 +270,6 @@ hr {
   }
   a {
     color: #fff;
-    text-decoration: none;
 
     > span {
       position: relative;
@@ -135,6 +279,8 @@ hr {
       background-color: rgba($blue, 0.4);
     }
     &:hover {
+      color: $blue;
+      text-decoration: none;
 
       > span {
         background-color: rgba($orange, 0.4);
@@ -143,31 +289,97 @@ hr {
   }
 }
 
-.footer-widget {
-  @include span-columns(2);
-  font-size: 80%;
-
-  &:not(:first-child) {
-    @include shift(0.5);
-  }
+.sidebar-widget {
+  margin-bottom: 20px;
+  color: #555;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  background-color: #fafafa;
 
   h3 {
+    @include pad($gutter/2);
+    border-bottom: 1px solid #ccc;
+    @include linear-gradient(rgba(#fff, 0.1), rgba(#000, 0.1));
+  }
+  .textwidget {
+    @include pad(0 $gutter/2);
+  }
+}
+
+.footer-widget {
+  @include span-columns(2);
+  margin-bottom: 20px;
+  font-size: 80%;
+
+  @include media(min-width 900px) {
+    &:not(:first-child) {
+      @include shift(0.5);
+    }
+    &:nth-child(5n) {
+      @include omega;
+    }
+    &:nth-child(5n+1) {
+      clear: both;
+      @include shift(0);
+    }
+  }
+  @include media(max-width 900px) {
+    @include span-columns(4);
+
+    &:nth-child(3n) {
+      @include omega;
+    }
+    &:nth-child(3n+1) {
+      clear: both;
+    }
+  }
+  @include media(max-width 600px) {
+    @include span-columns(12);
+  }
+
+
+h3 {
     padding-bottom: em(12);
     border-bottom: 1px dotted tint($blue, 20%);
   }
 }
 
-.content {
+.content,
+.sidebar {
   line-height: 1.5;
 }
 
-.page-template {
+.content {
 
   .content {
-    @include span-columns(9);
+    width: 100% !important;
+  }
+  img {
+    max-width: 100%;
+  }
+}
+
+.page-template-default,
+.error404 {
+
+  .content {
+    @include span-columns(7.5);
   }
   .sidebar {
-    @include span-columns(3);
+    @include span-columns(4);
+    @include shift(0.5);
+    @include omega;
+  }
+
+  @include media(max-width 800px) {
+
+    .content {
+      @include span-columns(12);
+    }
+    .sidebar {
+      @include span-columns(12);
+      @include shift(0);
+    }
   }
 }
 
@@ -181,7 +393,10 @@ hr {
   @include span-columns(12);
 }
 
-.wrapper { @include outer-container; }
+.wrapper {
+  @include outer-container;
+  @include pad(0 15px);
+}
 
 .header-container {
   @include pad(20px 0 0);
@@ -190,11 +405,20 @@ hr {
   > header {
 
     > hgroup {
-      @include span-columns(8);
+      @include span-columns(7);
+
+      @include media(max-width 900px) {
+        @include span-columns(12);
+        text-align: center;
+      }
     }
     > .header-widgets {
-      @include span-columns(4);
+      @include span-columns(5);
       @include omega;
+
+      @include media(max-width 900px) {
+        @include span-columns(12);
+      }
     }
     > nav {
       @include span-columns(12);
@@ -206,8 +430,8 @@ hr {
 .content-container {
   margin-top: -23px;
   border-top: 1px dotted rgba(#000, 0.05);
-  //background-image: url('/wp-content/themes/wapplify-theme/img/subtle_dots.png');
   background-color: #eee;
+  box-shadow: inset 0 1px 10px rgba(#000, 0.08);
 
   > section {
     margin-top: 43px;
@@ -224,6 +448,8 @@ hr {
 
 .footer-container {
   padding: $gutter 0;
+  color: #fff;
+  line-height: 1.5;
   border-top: 1px solid #bbb;
   background-color: $blue;
   box-shadow: inset 0 2px 6px rgba(#000, 0.2);
@@ -232,10 +458,9 @@ hr {
 footer {
 
   a[href] {
-    color: $orange;
 
     &:hover {
-      color: tint($blue, 50%);
+
     }
   }
   > section {}
@@ -267,12 +492,37 @@ nav {
     text-align: center;
 
     > ul {
+      @include span-columns(12);
       @include row(table);
+
+      @include media(max-width 600px) {
+        @include row(block);
+      }
 
       > li {
         @include span-columns(3, table);
         margin: 0;
         padding: 0;
+
+        @include media(max-width 600px) {
+          @include span-columns(12);
+          clear: both;
+
+          &:first-child > a {
+            border-radius: 6px 6px 0 0 !important;
+          }
+          &:last-child > a {
+            border-radius: 0 0 6px 6px !important;
+          }
+
+          a {
+
+            &:after,
+            &:before {
+              border: none !important;
+            }
+          }
+        }
 
         &:first-child {
 
@@ -290,11 +540,13 @@ nav {
             border-right: none;
           }
         }
-        &.current-menu-item {
+        &.current-menu-item,
+        &.current-page-ancestor {
 
           a {
             position: relative;
             @include linear-gradient(tint($blue, 20%) 50%, tint($blue, 15%) 0%);
+
             &:after,
             &:before {
               top: 100%;
@@ -313,13 +565,11 @@ nav {
               margin-left: -10px;
             }
             &:before {
-              /*
               border-color: rgba(#fff, 0);
-              border-top-color: $blue;
-              border-width: 13px;
+              border-top-color: shade($blue, 35%);
+              border-width: 11px;
               left: 50%;
-              margin-left: -13px;
-              */
+              margin-left: -11px;
             }
           }
         }
@@ -333,12 +583,11 @@ nav {
       text-decoration: none;
       text-shadow: 0 1px 0 rgba(#000, 0.6);
       border-right: 1px solid rgba(#000, 0.4);
+      border-bottom: 1px solid rgba(#000, 0.4);
       border-left: 1px solid rgba(#fff, 0.1);
       @include linear-gradient(tint($blue, 5%) 50%, $blue 0%);
 
       &:hover {
-        //color: $blue;
-        //text-shadow: 0 -1px 0 rgba(#fff, 0.6);
         @include linear-gradient(tint($orange, 15%) 50%, $orange 0%);
       }
     }
@@ -351,10 +600,11 @@ nav {
  * ===================== */
 
 #logo {
-  @extend .floatleft;
   margin: 0;
 
-  > a {}
+  @include media(min-width 900px) {
+    float: left;
+  }
 }
 
 #tagline {
@@ -365,8 +615,11 @@ nav {
   font-size: 1.2em;
   font-weight: normal;
   line-height: 1;
-  text-transform: lowercase;
   border-left: 1px dotted #aaa;
+
+  @include media(max-width 900px) {
+    display: none;
+  }
 }
 
 #menu-login-menu {
@@ -387,11 +640,24 @@ nav {
 }
 
 .menu-login-menu-container {
-  @extend .floatright;
+
+  @include media(min-width 900px) {
+    float: right;
+  }
+  @include media(max-width 900px) {
+    position: relative;
+    left: 11px;
+    text-align: center;
+  }
 }
 
 header #searchform {
-  @extend .floatright;
+  @include media(min-width 900px) {
+    float: right;
+  }
+  @include media(max-width 900px) {
+    text-align: center;
+  }
 
   input[type=text] {
     @include pad(3px);
@@ -401,7 +667,7 @@ header #searchform {
   }
   input[type=submit] {
     @extend .btn;
-    @extend .small;
+    @extend .tiny;
     position: relative;
     top: -2px;
     margin: 0;
@@ -418,15 +684,23 @@ header #searchform {
   article {
     border-top-right-radius: 0 !important;
     border-top-left-radius: 0 !important;
-    border-top: 1px solid tint($blue, 50%);
 
     > .content {
       @include span-columns(7.5);
+
+      @include media(max-width 800px) {
+        @include span-columns(12);
+      }
     }
     > .like-box {
       @include span-columns(4);
       @include shift(0.5);
       @include omega;
+
+      @include media(max-width 800px) {
+        @include span-columns(12);
+        @include shift(0);
+      }
     }
   }
 }
@@ -452,20 +726,48 @@ header #searchform {
 }
 
 .footer-widgets {
-  color: tint($blue, 90%);
-  line-height: 1.5;
+
 }
 
 .phone {
-  padding: 3px 0 3px 22px;
-  background-image: url('/wp-content/themes/wapplify-theme/img/phone-icon.png');
-  background-position: left center;
-  background-repeat: no-repeat;
+  position: relative;
 
+  &:before {
+    position: absolute;
+    top: 1px;
+    left: -22px;
+    content: ' ';
+    height: 16px;
+    width: 16px;
+    border-radius: 3px;
+    background-image: url('/wp-content/themes/wapplify-theme/img/sprite.gif');
+    background-position: 0 -64px;
+    background-repeat: no-repeat;
+  }
   > a {
     position: relative;
     top: 1px;
     font-size: 120%;
     font-weight: bold;
   }
+}
+
+#wpgmza_map_1.wpgmza_map {
+  margin: -5px 0 10px !important;
+  border: 1px solid tint($blue, 65%);
+}
+
+.wpgmza_markerbox {
+  font-size: 80%;
+}
+
+.error404 {
+
+  input[type=text] {
+    width: 50%;
+  }
+}
+
+#goog-wm-sb {
+  @extend .btn;
 }

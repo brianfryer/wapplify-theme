@@ -26,7 +26,7 @@
             <hgroup>
                 <h1 id="logo">
                     <a href="<?php echo site_url(); ?>">
-                        <img title="wApplify's Logo" alt="Content syndication by wApplify" src="<?php echo bloginfo('template_url'); ?>/img/content-syndication.png" width="289px" height="83px" />
+                        <img title="Content syndication by wApplify" alt="wApplify's Logo" src="<?php echo bloginfo('template_url'); ?>/img/content-syndication.png" width="289px" height="83px" />
                     </a>
                 </h1>
                 <h2 id="tagline"><?php bloginfo('description'); ?></h2>

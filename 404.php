@@ -15,6 +15,9 @@
                     </script>
                     <script src="http://linkhelp.clients.google.com/tbproxy/lh/wm/fixurl.js"></script>
                 </div><!-- .content -->
+                <aside class="sidebar">
+                    <?php if ( !function_exists('dynamic_sidebar') || !dynamic_sidebar("page-sidebar") ) : endif; ?>
+                </aside><!-- .sidebar -->
                 <div class="clearboth"></div>
             </article>
         </section><!-- .wrapper -->

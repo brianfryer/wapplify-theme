@@ -758,12 +758,12 @@ a[href].cboxElement, a[href].cboxElement:hover {
     float: left;
     margin-right: 2.35765%;
     width: 100%;
-    margin-top: 10px; }
+    margin-top: 12px; }
     .header-container > header > nav:last-child {
       margin-right: 0; }
 
 .content-container {
-  margin-top: -23px;
+  margin-top: -24px;
   border-top: 1px dotted rgba(0, 0, 0, 0.05);
   background-color: #eee;
   box-shadow: inset 0 1px 10px rgba(0, 0, 0, 0.08); }
@@ -835,6 +835,16 @@ nav#primary {
       padding: 0; }
       nav#primary > ul > li:last-child {
         padding-right: 0; }
+      nav#primary > ul > li.current-menu-item > a, nav#primary > ul > li.current-page-ancestor > a {
+        position: relative;
+        color: #fff;
+        background-color: #41647e;
+        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #41647e), color-stop(0%, #355a76));
+        background-image: -webkit-linear-gradient(top, #41647e 50%, #355a76 0%);
+        background-image: -moz-linear-gradient(top, #41647e 50%, #355a76 0%);
+        background-image: -ms-linear-gradient(top, #41647e 50%, #355a76 0%);
+        background-image: -o-linear-gradient(top, #41647e 50%, #355a76 0%);
+        background-image: linear-gradient(top, #41647e 50%, #355a76 0%); }
       @media screen and (max-width: 600px) {
         nav#primary > ul > li {
           display: block;
@@ -844,30 +854,24 @@ nav#primary {
           clear: both; }
           nav#primary > ul > li:last-child {
             margin-right: 0; }
+          nav#primary > ul > li a {
+            color: #a0b1be; }
+            nav#primary > ul > li a:hover {
+              color: #fff; }
           nav#primary > ul > li:first-child > a {
-            border-radius: 6px 6px 0 0 !important; }
+            border-radius: 6px 6px 0 0; }
           nav#primary > ul > li:last-child > a {
-            border-radius: 0 0 6px 6px !important; }
-          nav#primary > ul > li a:after, nav#primary > ul > li a:before {
-            border: none !important; } }
-      nav#primary > ul > li:first-child a {
-        border-top-left-radius: 6px;
-        border-bottom-left-radius: 6px;
-        border-left: none; }
-      nav#primary > ul > li:last-child a {
-        border-top-right-radius: 6px;
-        border-bottom-right-radius: 6px;
-        border-right: none; }
-      nav#primary > ul > li.current-menu-item a, nav#primary > ul > li.current-page-ancestor a {
-        position: relative;
-        background-color: #41647e;
-        background-image: -webkit-gradient(linear, left top, left bottom, color-stop(50%, #41647e), color-stop(0%, #355a76));
-        background-image: -webkit-linear-gradient(top, #41647e 50%, #355a76 0%);
-        background-image: -moz-linear-gradient(top, #41647e 50%, #355a76 0%);
-        background-image: -ms-linear-gradient(top, #41647e 50%, #355a76 0%);
-        background-image: -o-linear-gradient(top, #41647e 50%, #355a76 0%);
-        background-image: linear-gradient(top, #41647e 50%, #355a76 0%); }
-        nav#primary > ul > li.current-menu-item a:after, nav#primary > ul > li.current-menu-item a:before, nav#primary > ul > li.current-page-ancestor a:after, nav#primary > ul > li.current-page-ancestor a:before {
+            border-radius: 0 0 6px 6px; } }
+      @media screen and (min-width: 600px) {
+        nav#primary > ul > li:first-child > a {
+          border-top-left-radius: 6px;
+          border-bottom-left-radius: 6px;
+          border-left: none; }
+        nav#primary > ul > li:last-child > a {
+          border-top-right-radius: 6px;
+          border-bottom-right-radius: 6px;
+          border-right: none; }
+        nav#primary > ul > li.current-menu-item > a:after, nav#primary > ul > li.current-menu-item > a:before, nav#primary > ul > li.current-page-ancestor > a:after, nav#primary > ul > li.current-page-ancestor > a:before {
           top: 100%;
           border: solid transparent;
           content: " ";
@@ -875,18 +879,18 @@ nav#primary {
           width: 0;
           position: absolute;
           pointer-events: none; }
-        nav#primary > ul > li.current-menu-item a:after, nav#primary > ul > li.current-page-ancestor a:after {
+        nav#primary > ul > li.current-menu-item > a:after, nav#primary > ul > li.current-page-ancestor > a:after {
           border-color: rgba(255, 255, 255, 0);
           border-top-color: #355a76;
           border-width: 10px;
           left: 50%;
           margin-left: -10px; }
-        nav#primary > ul > li.current-menu-item a:before, nav#primary > ul > li.current-page-ancestor a:before {
+        nav#primary > ul > li.current-menu-item > a:before, nav#primary > ul > li.current-page-ancestor > a:before {
           border-color: rgba(255, 255, 255, 0);
           border-top-color: #0b283d;
           border-width: 11px;
           left: 50%;
-          margin-left: -11px; }
+          margin-left: -11px; } }
   nav#primary a {
     display: block;
     width: 100%;

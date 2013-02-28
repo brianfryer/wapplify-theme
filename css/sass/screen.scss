@@ -428,7 +428,7 @@ h3 {
 }
 
 .content-container {
-  margin-top: -23px;
+  margin-top: -24px;
   border-top: 1px dotted rgba(#000, 0.05);
   background-color: #eee;
   box-shadow: inset 0 1px 10px rgba(#000, 0.08);
@@ -504,72 +504,74 @@ nav {
         margin: 0;
         padding: 0;
 
+        &.current-menu-item,
+        &.current-page-ancestor {
+
+          > a {
+            position: relative;
+            color: #fff;
+            @include linear-gradient(tint($blue, 20%) 50%, tint($blue, 15%) 0%);
+          }
+        }
+
         @include media(max-width 600px) {
           @include span-columns(12);
           clear: both;
 
-          &:first-child > a {
-            border-radius: 6px 6px 0 0 !important;
-          }
-          &:last-child > a {
-            border-radius: 0 0 6px 6px !important;
-          }
-
           a {
+            color: tint($blue, 60%);
 
-            &:after,
-            &:before {
-              border: none !important;
+            &:hover {
+              color: #fff;
             }
           }
+          &:first-child > a {
+            border-radius: 6px 6px 0 0;
+          }
+          &:last-child > a {
+            border-radius: 0 0 6px 6px;
+          }
         }
-
-        &:first-child {
-
-          a {
+        @include media(min-width 600px) {
+          &:first-child > a {
             border-top-left-radius: 6px;
             border-bottom-left-radius: 6px;
             border-left: none;
           }
-        }
-        &:last-child {
-
-          a {
+          &:last-child > a {
             border-top-right-radius: 6px;
             border-bottom-right-radius: 6px;
             border-right: none;
           }
-        }
-        &.current-menu-item,
-        &.current-page-ancestor {
+          &.current-menu-item,
+          &.current-page-ancestor {
 
-          a {
-            position: relative;
-            @include linear-gradient(tint($blue, 20%) 50%, tint($blue, 15%) 0%);
+            > a {
 
-            &:after,
-            &:before {
-              top: 100%;
-              border: solid transparent;
-              content: " ";
-              height: 0;
-              width: 0;
-              position: absolute;
-              pointer-events: none;
-            }
-            &:after {
-              border-color: rgba(#fff, 0);
-              border-top-color: tint($blue, 15%);
-              border-width: 10px;
-              left: 50%;
-              margin-left: -10px;
-            }
-            &:before {
-              border-color: rgba(#fff, 0);
-              border-top-color: shade($blue, 35%);
-              border-width: 11px;
-              left: 50%;
-              margin-left: -11px;
+              &:after,
+              &:before {
+                top: 100%;
+                border: solid transparent;
+                content: " ";
+                height: 0;
+                width: 0;
+                position: absolute;
+                pointer-events: none;
+              }
+              &:after {
+                border-color: rgba(#fff, 0);
+                border-top-color: tint($blue, 15%);
+                border-width: 10px;
+                left: 50%;
+                margin-left: -10px;
+              }
+              &:before {
+                border-color: rgba(#fff, 0);
+                border-top-color: shade($blue, 35%);
+                border-width: 11px;
+                left: 50%;
+                margin-left: -11px;
+              }
             }
           }
         }
